@@ -13,6 +13,7 @@ import modal.Bill;
 import modal.Cart;
 import modal.Category;
 import modal.Detail;
+import modal.Invoice;
 import modal.Order;
 import modal.Order_Detail;
 import modal.Product;
@@ -92,10 +93,10 @@ public class Dao {
 		return d;
 	}
 	
-	// Thống kê biểu đồ cột doanh thu của cửa hàng theo tuỳ chọn thời gian
+	// Thá»‘ng kÃª biá»ƒu Ä‘á»“ cá»™t doanh thu cá»§a cá»­a hÃ ng theo tuá»³ chá»�n thá»�i gian
 	public List<Bill> getSumMoney() {
 		List<Bill> list = new ArrayList<Bill>();
- 		String query = "select (YEAR(ngayban)) as Năm, sum(bill.tongtien) as tongtien from bill group by (YEAR(ngayban))";
+ 		String query = "select (YEAR(ngayban)) as NÄƒm, sum(bill.tongtien) as tongtien from bill group by (YEAR(ngayban))";
 		
 		try {
 			conn = new ConnectDB().getConnect();
@@ -110,7 +111,7 @@ public class Dao {
 		return list;
 	}
 	
-	// Thống kê biểu đồ tròn doanh thu của cửa hàng trong một tháng theo loại danh mục hàng hoá  
+	// Thá»‘ng kÃª biá»ƒu Ä‘á»“ trÃ²n doanh thu cá»§a cá»­a hÃ ng trong má»™t thÃ¡ng theo loáº¡i danh má»¥c hÃ ng hoÃ¡  
 	public List<Category> getSumMoneyCate() {
 		List<Category> list = new ArrayList<Category>();
  		String query = "select category.type_name, sum(bill.tongtien) as tongtien \r\n"
@@ -189,7 +190,7 @@ public class Dao {
         return typeID;
     }
 	
-	// order
+	// insert order
 	public void checkoutOrder(Order order) {
 		String sql = "insert into orders values \r\n"
 				+ "(?, ?, ?, ?, ?)";
@@ -208,7 +209,7 @@ public class Dao {
 		}
 	}
 	
-	// order detail
+	// insert order detail
 	public boolean order_detail(Order_Detail o_detail) {
 		String sql = "insert into orders_detail values \r\n"
 				+ "(?, ?, ?, ?)";
@@ -229,12 +230,80 @@ public class Dao {
 		return result;
 	}
 	
+	
+	// get orders detail
+	public List<Invoice> getInvoice(String oID) {
+		List<Invoice> list = new ArrayList<Invoice>();
+		
+		String sql = "select orders.oID, users.username, o_address, ngaymua, products.name, quantity, tongtien\r\n"
+				+ "from orders, orders_detail, users, products\r\n"
+				+ "where orders.oID = orders_detail.oID and orders.uID = users.uID and \r\n"
+				+ "orders_detail.pID = products.pID and orders.oID = ?";
+		
+		try {
+			conn = new ConnectDB().getConnect();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, oID);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Invoice(rs.getString(1), 
+									rs.getString(2), 
+									rs.getString(3), 
+									rs.getTimestamp(4), 
+									rs.getString(5),
+									rs.getInt(6),
+									rs.getDouble(7)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	//get list invoice 
+	public List<Order> getListInvoice() {
+		List<Order> list = new ArrayList<Order>();
+		String sql = "select * from orders";
+		
+		try {
+			conn = new ConnectDB().getConnect();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Order(rs.getString(1), rs.getTimestamp(4), rs.getInt(5)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	// get orders
+	public Invoice getInvoiceOrder(String oID) {
+		String sql = "select oID, users.username, o_address, ngaymua from orders, users \r\n"
+				+ "where orders.uID = users.uID and orders.oID = ?";
+		Invoice inv = new Invoice();
+		try {
+			conn = new ConnectDB().getConnect();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, oID);
+			rs = ps.executeQuery();
+			while(rs.next()) { 
+				inv = new Invoice(rs.getString(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4)) ;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return inv;
+	}
+	
 	public static void main(String[] args) {
 		Dao dao = new Dao();
-		List<Product> list = dao.getProduct();
+		List<Order> list = dao.getListInvoice();
 		Detail p = dao.getDetailProductById(1);
 //		System.out.println(p);
-		for(Product l : list) {
+		for(Order l : list) {
 			System.out.println(l);
 		}
 	}

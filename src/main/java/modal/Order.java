@@ -13,6 +13,13 @@ public class Order {
 		super();
 	}
 
+	public Order(String oID, Timestamp date_order, int status_order) {
+		super();
+		this.oID = oID;
+		this.date_order = date_order;
+		this.status_order = status_order;
+	}
+
 	public Order(String oID, Users uID, String o_address, Timestamp date_order, int status_order) {
 		super();
 		this.oID = oID;
