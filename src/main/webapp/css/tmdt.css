@@ -1,0 +1,242 @@
+:root{
+    z-index: 1;
+}
+.header-search form .search-btn{
+    background: red;
+    
+}
+.center {
+    margin-top: 52px;
+    background-color: #ebebeb;
+    height: 801px;
+}
+.center .outer_wrap{
+    width:1000px;
+    height:800px;
+    background-color: white;
+    margin: 20px 240px 20px 240px;
+    /* border: 3px solid black; */
+    padding-top :1px;
+}
+
+.center .outer_wrap .in_wrap{
+    width: 600px;
+    height: 724px;
+    border: 3px groove #ebebeb;
+    /* margin :auto; */
+    margin: 50px 200px 0px 200px; 
+    padding-top: 55px;
+
+}
+
+.center .outer_wrap .in_wrap .center_title{
+    padding-left: 50px;
+}
+
+.center .outer_wrap .in_wrap .input_big {
+    width:500px;
+    height:43px;
+    margin: 20px 49px 0px 49px;
+}
+
+.center .outer_wrap .in_wrap .other {
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.center .outer_wrap .in_wrap .other input{
+    width: 225px;
+    height: 38px;
+}
+.center .outer_wrap .in_wrap .other .birth_year{
+    width: 225px;
+    float: left;
+    margin-left: 50px;
+}
+
+.center .outer_wrap .in_wrap .other .Sex{
+    width: 225px;
+    float: right;
+    margin-right: 45px;
+}
+
+.center .outer_wrap .in_wrap .under{
+    width:500px;
+    margin: 20px 49px 0px 49px;
+}
+
+.center .outer_wrap .in_wrap .under input{
+    width:500px;
+    height:43px;
+}
+
+.center .outer_wrap .in_wrap .signUp button{
+    width:500px;
+    height:43px;
+    /*margin: 26px 49px 0px 49px;*/
+    background-color: #D10024;
+    color: white;
+}
+
+.center .outer_wrap .in_wrap .signIn {
+    width:500px;
+    height:43px;
+    margin: 30px 49px 0px 49px;
+    text-align: center;
+}
+
+/* LOGIN */
+
+.center .outer_wrap .in_wrap .signUp {
+    width:500px;
+    height:43px;
+    margin: 30px 49px 0px 49px;
+    /* text-align: center; */
+}
+
+.center .outer_wrap .in_wrap .signUp a{
+   float: right;
+   margin-left: 20px;
+}
+
+.center .outer_wrap .in_wrap .Login .login_button{
+    width:500px;
+    height:43px;
+    margin: 10px 49px 0px 49px;
+    background-color: #D10024;
+    color: white;
+}
+
+.center .outer_wrap .in_wrap .Login .formGroup{
+    width: 500px;
+    height: 43px;
+    margin: 26px 49px 0px 49px;
+    background-color: #2d4373;
+    line-height: 43px;
+    text-align: center;
+    position: relative;
+}
+
+.login_facebook, .login_gg ,i{
+    color: white;
+}
+
+i.fa-facebook , i.fa-google {
+    position: absolute;
+    left: 0px;
+    width: 37px;
+    height: 43px;
+    padding-top: 16px;
+    border-right: 1px solid black;
+}
+
+.center .outer_wrap .in_wrap .Login .formGroup.google{
+    background-color: red;
+}
+
+.center .outer_wrap .in_wrap .error {
+    color: red;
+    margin: 12px 0px 0px 50px;
+    font-weight: 500;
+}
+
+
+/*get back password*/
+
+.center .outer_wrap .in_wrap .get_back_password_title{
+    text-align: center;
+}
+
+.center .outer_wrap .in_wrap.get_back_password_wrap{
+    height: 330px;
+}
+
+.center .outer_wrap .in_wrap.get_back_password_wrap .error{
+    color:#ff0000;
+}
+.center.get_back_password_center{
+    height: 392px;
+}
+.center .outer_wrap .in_wrap.get_back_password_wrap .message{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.center .outer_wrap .in_wrap.get_back_password_wrap .signInButton{
+    margin: 0px 244px 0px 244px;
+    background: #ff0000;
+    color: white;
+    border: none;
+    padding: 9px 12px;
+}
+
+/*MY ACCOUNT BUTTON*/
+.container .myAccount{
+    color:black;
+    position: relative;
+}
+
+.container .myAccount .subAccountButton a{
+    color:black;
+    display:block;
+    margin-top: 4px;
+}
+
+.container .myAccount .subAccountButton i{
+    margin: 0px 5px 0px 5px;
+    color: black;
+}
+
+.container .myAccount .subAccountButton a:hover{
+    color: red;
+    background: #ebebeb;
+}
+.container .myAccount .subAccountButton{
+    display: none;
+    position: absolute;
+    background:white;
+    width: 114px;
+    z-index: 5;
+}
+
+.container .myAccount:hover .subAccountButton{
+    display: block;
+}
+
+/*LỊCH SỬ MUA HÀNG*/
+.history_buy{
+    margin-top: 7px;
+}
+
+
+/*SEARCH SHOP*/
+
+.col-md-6.searchShop{
+    display: contents;
+}
+.header-search.header-searchShop{
+    padding: 15px 0px;
+    text-align: center;
+    width: 730px;
+    margin: auto;
+}
+
+/*PRODUCT LIST*/
+
+#product-out{
+    height: 500px;
+}
+
+button.aside-button {
+    height: 35px;
+    width: 90px;
+    background: #D10024;
+    color: #FFF;
+    font-weight: 700;
+    border: none;
+    margin-left: 19px;
+}
+
+.aside-header {
+    display: flex;
+}
